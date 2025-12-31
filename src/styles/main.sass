@@ -1,5 +1,14 @@
 @use './variable' as variable
 
+=fadeInit
+    opacity: 0
+    transform: translateY(8px)
+
+=fadeIn
+    opacity: 1
+    transform: translateY(0)
+    transition: opacity 1.5s ease, transform 1s ease
+
 .main-blue
     background-color: variable.$main-blue
 
@@ -27,4 +36,4 @@
     margin: auto
     padding: 0 40px
     +variable.mobile
-        padding: 0 15px 
+        padding: 0 15px

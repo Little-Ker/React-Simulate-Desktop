@@ -1,0 +1,114 @@
+@use '../../styles/main' as main
+@use '../../styles/keyframes'
+
+.root
+  width: 100%
+  height: 100vh
+  background: #ccc
+  overflow: hidden
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-direction: column
+  padding: 2rem 0
+  position: relative
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: url('https://picsum.photos/id/870/1800/1800')
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    filter: blur(4px)
+  &::after
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: #000000ba
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 50px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 25px 60px -18px inset
+  .timeContent
+    position: relative
+    z-index: 2
+    color: #fff
+    margin: 4rem
+    .date
+      font-size: 22px
+    .time
+      font-size: 68px
+  .loginContent
+    margin: 4rem
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    position: relative
+    z-index: 2
+    .photo
+      width: 80px
+      height: 80px
+      border-radius: 1.5rem
+      border: 4px solid #fff
+      box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px
+      transition: transform 0.3s ease
+      &.breath
+        animation: breath 0.6s ease-in-out
+
+    .bottom
+      height: 45px
+      margin-top: 1.2rem
+      display: flex
+      align-items: center
+      .welcomeArea
+        font-size: 24px
+        color: #fff
+        .progressBar
+          width: 120px
+          height: 4px
+          background: #333
+          border-radius: 2px
+          overflow: hidden
+        .progress
+          height: 100%
+          width: 100%
+          background: #eee
+          animation: loading var(--loading-time) linear forwards
+        .welcome
+          opacity: 0
+          animation: fadeIn 0.4s ease forwards
+      .button
+        margin-left: 1rem
+        width: 50px
+        border: 2px solid #fff
+        background: transparent
+        display: flex
+        justify-content: center
+        align-items: center
+        color: #fff
+        border-radius: 2rem
+        font-size: 20px
+        padding: 3px
+        box-shadow: 0px 0px 5px #000000
+        cursor: pointer
+        transition: .3s all
+        padding: 6px
+        .btnIcon
+          transition: .3s all
+        &:hover
+          .btnIcon
+            margin-left: .3rem
+
+  .date, .time, .welcome
+    text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000
+
+.fadeIn
+  +main.fadeIn
+
+.fadeInit
+  +main.fadeInit
