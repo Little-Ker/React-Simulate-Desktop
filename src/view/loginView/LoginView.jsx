@@ -5,6 +5,7 @@ import { MdArrowForward } from 'react-icons/md'
 import clsx from 'clsx'
 import loginStore from '@/zustand/loginStore'
 import useTime from '@/hook/useTime'
+import { useNavigate } from 'react-router-dom'
 import styles from './loginView.module.sass'
 
 const LOADING_TIME = 1.5 // 秒
@@ -14,6 +15,7 @@ function LoginView() {
   const {
     month, day, hours, minute, week,
   } = useTime()
+  const navigate = useNavigate()
 
   // stage: 'idle' | 'progress' | 'welcome'
   const [stage, setStage] = useState('idle')
@@ -22,8 +24,13 @@ function LoginView() {
   const handleClick = useCallback(() => {
     if (stage !== 'idle') return
     setStage('progress')
-    setTimeout(() => setStage('welcome'), LOADING_TIME * 1000)
-  }, [stage])
+    setTimeout(() => {
+      setStage('welcome')
+      setTimeout(() => {
+        navigate('/desktopView') // 動畫結束後跳到 /desktop
+      }, LOADING_TIME * 1000)
+    }, LOADING_TIME * 1000)
+  }, [stage, navigate])
 
   useEffect(() => {
     setIsMounted(true)

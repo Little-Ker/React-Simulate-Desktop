@@ -1,0 +1,66 @@
+.root
+  width: 100vw
+  height: 100vh
+  position: relative
+  overflow: hidden
+
+  .backgroundCanvas
+    position: absolute
+    inset: 0
+    z-index: 0
+
+  .iconGrid
+    margin-top: 35px
+    position: relative
+    z-index: 10
+    padding: 40px 10px
+    display: grid
+    grid-template-columns: repeat(auto-fill, 100px)
+    grid-gap: 20px
+    flex-direction: column
+
+    .desktopIcon
+      display: flex
+      flex-direction: column
+      align-items: center
+      cursor: pointer
+
+      .iconImage
+        width: 50px
+        height: 50px
+        padding-bottom: 0.25rem
+        display: flex
+        justify-content: center
+        align-items: center
+        font-size: 24px
+        transition: transform 0.3s
+        position: relative
+        background: rgba(255, 255, 255, 0.15)
+        backdrop-filter: blur(2px) saturate(180%)
+        border: 1px solid rgba(255, 255, 255, 0.8)
+        border-radius: 1rem
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), inset 0 4px 20px rgba(255, 255, 255, 0.3)
+        &::after
+          content: ''
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+          background: rgba(255, 255, 255, 0.1)
+          border-radius: 1rem
+          backdrop-filter: blur(1px)
+          box-shadow: inset -8px -8px 0px -11px rgba(255, 255, 255, 1), inset 0px -9px 0px -8px rgba(255, 255, 255, 1)
+          opacity: 0.6
+          z-index: -1
+          filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%)
+
+      &:hover .iconImage
+        transform: translateY(-5px)
+
+    .iconName
+      margin-top: 8px
+      font-weight: bold
+      color: #fff
+      font-size: 14px
+      text-shadow: -1px 0 #141414, 0 1px #141414, 1px 0 #141414, 0 -1px #141414, 2px 3px 5px #272626
