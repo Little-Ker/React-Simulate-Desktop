@@ -3,7 +3,7 @@ import workMenuRoutes from '@/router/workMenuRoutes'
 import PropTypes from 'prop-types'
 import styles from './workMenu.module.sass'
 
-function WorkMenu({ handleWorkChange, isMenuOpen }) {
+function WorkMenu({ handleWorkChange = () => {}, isMenuOpen = false }) {
   return (
     <div
       className={styles.root}
@@ -40,6 +40,6 @@ function WorkMenu({ handleWorkChange, isMenuOpen }) {
 export default WorkMenu
 
 WorkMenu.propTypes = {
-  handleWorkChange: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired,
+  handleWorkChange: PropTypes.func,
+  isMenuOpen: PropTypes.bool,
 }

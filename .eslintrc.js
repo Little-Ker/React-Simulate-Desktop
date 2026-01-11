@@ -37,6 +37,12 @@ module.exports = {
     '@babel',
   ],
   rules: {
+    'react/require-default-props': [
+      'error',
+      {
+        'functions': 'defaultArguments',
+      },
+    ],
     'no-restricted-exports': ['off'], // 關閉該規則
     'import/prefer-default-export': 'off',
     indent: [2, 2], // 縮排規則，index[0] 的數字代表含意為 關閉(0), 警告(1), 錯誤(2)

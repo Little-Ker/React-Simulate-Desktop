@@ -1,45 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useCallback } from 'react'
 import TopDesktopNavbar from '@/component/topDesktopNavbar'
 import BottomDesktopNavbar from '@/component/bottomDesktopNavbar'
-// import Window from '@/view/window'
+import Window from '@/view/window'
 import clsx from 'clsx'
 import loginStore from '@/zustand/loginStore'
 import { desktopAppRoutes } from '@/router/routes'
-// import useDesktopStore from '@/zustand/desktopStore'
+import useDesktopStore from '@/zustand/desktopStore'
 import styles from './desktopView.module.sass'
 
 function Desktop() {
   const { tableCloth } = loginStore()
-  // const { windowList, setWindowList } = useDesktopStore()
+  const {
+    windowList, openWindow, getWindowMaxZ,
+  } = useDesktopStore()
 
-  // useEffect(() => {
-  //   setWindowList([{
-  //     id: 'win1', title: '專案 A', zIndex: 100, isProject: true,
-  //   }, {
-  //     id: 'win2', title: '專案 B', zIndex: 101, isProject: true,
-  //   }])
-  // }, [setWindowList])
-
-  // const handleClose = (id) => {
-  //   setWindowList(prev => prev.filter(w => w.id !== id))
-  // }
-
-  // const handleFocus = (id) => {
-  //   setWindowList((prev) => {
-  //   // 找到目前的最高 zIndex
-  //     const maxZ = Math.max(...prev.map(w => w.zIndex))
-
-  //     return prev.map((w) => {
-  //       if (w.id === id) {
-  //       // 如果已經是最高了就不用改，否則設為最高 + 1
-  //         return { ...w, zIndex: maxZ + 1 }
-  //       }
-  //       return w
-  //     })
-  //   })
-  // }
-
-  // const maxZ = Math.max(...windowList.map(w => w.zIndex))
+  const onOpenApp = useCallback(() => {
+    openWindow({
+      title: 'vivi\'s side project',
+      isProject: true,
+    })
+  }, [openWindow])
 
   return (
     <div className={styles.root}>
@@ -53,25 +33,25 @@ function Desktop() {
       {/* 圖示區域 */}
       <div className={styles.iconGrid}>
         {desktopAppRoutes?.map(icon => (
-          <div key={icon.id} className={styles.desktopIcon}>
+          <div key={icon.id} onDoubleClick={onOpenApp} className={styles.desktopIcon}>
             <div className={styles.iconImage}>{icon.icon}</div>
             <span className={styles.iconName}>{icon.name}</span>
           </div>
         ))}
       </div>
 
-      {/* {windowList?.map((win, index) => (
+      {windowList?.map((win, index) => (
         <Window
           key={win.id}
+          id={win.id}
+          title={win.title}
           zIndex={win.zIndex}
           x={50 + index * 40}
           y={50 + index * 40}
           isProject={win?.isProject}
-          // onFocus={() => handleFocus(win.id)}
-          isActive={win.zIndex === maxZ}
-          // onClose={() => handleClose(win.id)}
+          isActive={win.zIndex === getWindowMaxZ()}
         />
-      ))} */}
+      ))}
 
       {/* 底部工具欄 Dock */}
       <BottomDesktopNavbar />

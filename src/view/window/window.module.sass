@@ -1,0 +1,82 @@
+@use '../../styles/main' as main
+@use '../../styles/keyframes'
+
+$border-color: #bdbdbd
+$bg-color: #f1ede1
+$hearder-bg-color: linear-gradient(to top, #aac4ff, #c5d5fa)
+$window-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1)
+
+.windowContainer
+  background: white
+  border: 1px solid $border-color
+  border-radius: 1rem
+  overflow: hidden
+  position: absolute
+  min-width: 200px
+  min-height: 120px
+  user-select: none
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px
+
+  .windowHeader
+    border-bottom: 1px solid $border-color
+    padding: 8px 12px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background: $hearder-bg-color
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), inset 0 4px 20px rgba(255, 255, 255, 0.3)
+    z-index: 9
+    position: relative
+    .hearderLeft
+      width: calc(100% - 80px)
+      display: flex
+      align-items: center
+      .workMenu
+        transform: rotate(-180deg)
+        &.workMenuOpen
+          transform: rotate(0deg)
+      .icon
+        width: 15px
+        margin-top: .25rem
+      .hearderTitle
+        width: calc(100% - 15px)
+        margin-left: .5rem
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        text-align: left
+    .hearderRight
+      width: 80px
+      display: flex
+      gap: .3rem
+      justify-content: flex-end
+  .windowContent
+    width: 100%
+    position: relative
+    height: calc(100% - 38px)
+  .maximized
+    transform: none !important
+    border-radius: 0
+  button
+    width: 22px
+    height: 22px
+    border-radius: 50%
+    display: flex
+    justify-content: center
+    align-items: center
+    border: 1px solid $border-color
+    padding: .2rem
+    cursor: pointer
+    transition: .3s all
+    &:hover
+      background: #ccc
+
+  .resizeHandlerContent
+    position: absolute
+    background: transparent
+    z-index: 1000
+
+  iframe
+    width: 100%
+    height: 100%
+    border: none

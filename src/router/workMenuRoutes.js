@@ -9,7 +9,7 @@ const workMenuRoutes = [
   {
     category: '切版動畫',
     projects: [
-      { workTitle: 'vivi自我介紹網頁', url: 'https://little-ker.github.io/React-Personal-Website/#/about' },
+      { workTitle: 'vivi 自我介紹網頁', url: 'https://little-ker.github.io/React-Personal-Website/#/about' },
       { workTitle: '架空和菓子店網頁', url: 'https://little-ker.github.io/React-Shiroishi-Yougashiten/' },
       { workTitle: '動畫互動網頁', url: 'https://little-ker.github.io/React-Animate-Practise/' },
     ],
